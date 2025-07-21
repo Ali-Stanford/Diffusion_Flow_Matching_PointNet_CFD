@@ -1,0 +1,1 @@
+read -r JOBID NODE <<< "$line";   echo "Job $JOBID is running on node $NODE";   echo -n "GPU type: ";   ssh "$NODE" 'nvidia-smi --query-gpu=name --format=csv,noheader';   echo; done
