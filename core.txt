@@ -1,1 +1,7 @@
-read -r JOBID NODE <<< "$line";   echo "Job $JOBID is running on node $NODE";   echo -n "GPU type: ";   ssh "$NODE" 'nvidia-smi --query-gpu=name --format=csv,noheader';   echo; done
+squeue -u $USER -h -o "%i %N" \
+| while read -r JOBID NODE; do
+    echo "Job $JOBID is running on node $NODE"
+    echo -n "GPU type: "
+    ssh -n "$NODE" 'nvidia-smi --query-gpu=name --format=csv,noheader'
+    echo
+  done
