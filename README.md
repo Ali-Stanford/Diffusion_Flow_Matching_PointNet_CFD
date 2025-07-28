@@ -1,1 +1,1 @@
-# Diffusion_PointNet_CFD
+# Flow matching and diffusion models via PointNet for CFD on irregular geometries
