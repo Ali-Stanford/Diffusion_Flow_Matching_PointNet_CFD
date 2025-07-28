@@ -258,12 +258,12 @@ for epoch in range(num_epochs):
     model.train()
     epoch_loss = 0.0
     for clean_field, coords in train_loader:
-        clean_field = clean_field.to(device)  # [B,N,3]
-        coords      = coords.to(device)       # [B,N,2]
+        clean_field = clean_field.to(device) 
+        coords      = coords.to(device)      
         B = clean_field.shape[0]
 
         # sample time t
-        t = sample_t(B, device)               # [B]
+        t = sample_t(B, device)               
         # sample noise
         noise = torch.randn_like(clean_field)
         # form x_t and compute v_target
@@ -496,8 +496,6 @@ for j in range(len(input_test)):
     u_collection.append(compute_relative_error(predictions.cpu().numpy(), 0, output_test[j,:,0]))
     v_collection.append(compute_relative_error(predictions.cpu().numpy(), 1, output_test[j,:,1]))
     p_collection.append(compute_relative_error(predictions.cpu().numpy(), 2, output_test[j,:,2]))
-
-
 
 print("Average RMS of Test for u: ", rms_u / len(test_idx))
 print("Average Relative of Test for u: ", lrms_u / len(test_idx))
