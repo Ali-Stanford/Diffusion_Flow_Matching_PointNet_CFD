@@ -1,1 +1,1 @@
-# Flow matching and diffusion models via PointNet for CFD on irregular geometries
+# Flow Matching and Diffusion Models via PointNet for Generating Fluid Fields on Irregular Geometries
