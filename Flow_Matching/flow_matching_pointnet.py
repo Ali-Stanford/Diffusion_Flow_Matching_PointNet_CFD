@@ -1,3 +1,6 @@
+#########################
+# Libraries
+#########################
 import numpy as np
 import torch
 import torch.nn as nn
@@ -15,7 +18,6 @@ print("Using device:", device)
 #########################
 # Functions
 #########################
-
 def plotSolution(x_coord,y_coord,solution,file_name,title):
     plt.scatter(x_coord, y_coord, s=2.5,c=solution,cmap='jet')
     plt.title(title)
@@ -50,9 +52,9 @@ def compute_relative_error(generated_cloud, variable, ground_truth):
     relative_error = norm_difference / norm_ground_truth
     return relative_error
 
-#########################
+##############################
 # Data Loading & Preprocessing
-#########################
+##############################
 
 # Load your data and extract point coordinates and CFD fields.
 Data = np.load('CFDdata.npy')
@@ -117,11 +119,6 @@ output_validation[:, :, 2] = (output_validation[:, :, 2] - p_min) / (p_max - p_m
 #########################
 # Flow-Matching Setup
 #########################
-
-# We replace diffusion schedules with a simple linear interpolation flow:
-#   x_t = (1 - t)*clean + t*noise
-#   v_true = d x_t / d t = noise - clean
-
 def sample_t(batch_size, device):
     # Uniform in [0,1)
     return torch.rand(batch_size, device=device)
@@ -138,7 +135,6 @@ def make_xt_and_v(clean_field, noise, t):
 #########################
 # Time Embedding
 #########################
-
 class SinusoidalTimeEmbedding(nn.Module):
     def __init__(self, emb_dim):
         super(SinusoidalTimeEmbedding, self).__init__()
@@ -160,9 +156,9 @@ class SinusoidalTimeEmbedding(nn.Module):
             emb = F.pad(emb, (0, 1))
         return emb
 
-#########################
+#################################
 # PointNet-based Denoising Network
-#########################
+#################################
 class PointNetMLP(nn.Module):
     def __init__(self, field_dim=3, coord_dim=2, time_emb_dim=32, scaling=2.0):
         super(PointNetMLP, self).__init__()
@@ -239,16 +235,10 @@ optimizer = optim.Adam(model.parameters(), lr=1e-3)
 num_epochs = 240000
 batch_size = 256
 
-train_dataset = TensorDataset(
-    torch.tensor(output_train),  # clean fields
-    torch.tensor(input_train)    # coords
-)
+train_dataset = TensorDataset(torch.tensor(output_train),torch.tensor(input_train))
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-val_dataset = TensorDataset(
-    torch.tensor(output_validation),
-    torch.tensor(input_validation)
-)
+val_dataset = TensorDataset(torch.tensor(output_validation),torch.tensor(input_validation))
 val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
 train_loss_history = []
@@ -318,7 +308,7 @@ plt.clf()
 # Sampling via ODE Integration
 #########################
 
-def sample_flow(model, coords, num_steps=200):
+def sample_flow(model, coords, num_steps=1000):
     """
     #Starting from z N(0,I), integrate dx/dt = f_theta(x,t) 
     from t=1 down to t=0 with simple Euler steps.
@@ -359,7 +349,7 @@ for j in range(len(input_train)):
 
     with torch.no_grad():       
         # ---- here we call the flow-matching sampler ----
-        predictions = sample_flow(model, coords_tensor, num_steps=200)
+        predictions = sample_flow(model, coords_tensor, num_steps=1000)
         predictions = predictions.permute(0, 2, 1)                     
 
     
@@ -411,7 +401,6 @@ print()
 print("############################################################")
 print()
 
-
 #########################
 # Error Analysis (Test Set)
 #########################
@@ -428,12 +417,12 @@ for j in range(len(input_test)):
     curr_idx = j  # use the index within input_test directly
 
     # Convert the current test sample to a torch tensor (add batch dimension).
-    coords_tensor = torch.tensor(input_test[curr_idx]).unsqueeze(0).float().to(device)  # [1, N, 2]
+    coords_tensor = torch.tensor(input_test[curr_idx]).unsqueeze(0).float().to(device) 
 
     with torch.no_grad():
         # ---- here we call the flow-matching sampler ----
-        predictions = sample_flow(model, coords_tensor, num_steps=200)  # [1, N, 3]
-        predictions = predictions.permute(0, 2, 1)                     # [1, 3, N]
+        predictions = sample_flow(model, coords_tensor, num_steps=1000)  
+        predictions = predictions.permute(0, 2, 1)                     
 
     # Denormalize coordinates in-place (as before)
     input_test[j, :, 0] = (input_test[j, :, 0] + 1) * (x_max - x_min) / 2 + x_min
