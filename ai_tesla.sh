@@ -10,4 +10,4 @@
 ml py-pytorch/2.0.0_py39
 ml load viz py-matplotlib/3.7.1_py39
 
-python3 abc.py
+python3 diffusion_pointnet.py
