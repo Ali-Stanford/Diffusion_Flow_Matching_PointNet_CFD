@@ -37,6 +37,5 @@ ax.tick_params(axis='both', which='major', labelsize=15)
 #ax.legend(fontsize=18)
 plt.tight_layout()
 #plt.show()
-# To save instead of (or in addition to) showing:
 plt.savefig("v_vs_theta.png", dpi=300)
 plt.savefig("v_vs_theta.pdf")
