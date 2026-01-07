@@ -8,7 +8,7 @@
 **Citation** <br>
 If you use the code, please cite the following article: <br>
 
-    @misc{kashefi2026flowmatchingdiffusionmodels,
+    @misc{kashefi2026FlowMatchingPointNetDiffusionPointNet,
       title={Flow Matching and Diffusion Models via PointNet for Generating Fluid Fields on Irregular Geometries}, 
       author={Ali Kashefi},
       year={2026},
