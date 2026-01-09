@@ -1,4 +1,4 @@
-# Flow Matching PointNet and Diffusion PointNet
+# Flow Matching PointNet and Diffusion PointNet for CFD (Computational Fluid Dynamics)
 ![pic](./dif2.png) <br>
 <br>
 ![pic](./dif1.png) <br>
