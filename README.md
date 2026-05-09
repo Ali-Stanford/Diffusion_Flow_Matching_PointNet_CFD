@@ -11,10 +11,13 @@ If you use the code, please cite the following article: <br>
 **[Flow matching and diffusion models via PointNet for generating fluid fields on irregular geometries](https://arxiv.org/abs/2601.03030)**
 
     @article{kashefi2026FlowMatchingDiffusionPointNet,
-      title={Flow Matching and Diffusion Models via PointNet for Generating Fluid Fields on Irregular Geometries},
-      author={Kashefi, Ali},
-      journal={arXiv preprint arXiv:2601.03030},
-      year={2026}}
+      title = {Flow matching and diffusion models via PointNet for generating fluid fields on irregular geometries},
+      author={Ali Kashefi},
+      journal={Computer Methods in Applied Mechanics and Engineering},
+      volume = {458},
+      pages = {119037},
+      year = {2026},
+      doi = {https://doi.org/10.1016/j.cma.2026.119037}}
 
 **Abstract** <be>
 
