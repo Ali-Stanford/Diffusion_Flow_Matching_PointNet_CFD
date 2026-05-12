@@ -8,7 +8,7 @@
 **Citation** <br>
 If you use the code, please cite the following article: <br>
 
-**[Flow matching and diffusion models via PointNet for generating fluid fields on irregular geometries](https://arxiv.org/abs/2601.03030)**
+**[Flow matching and diffusion models via PointNet for generating fluid fields on irregular geometries](https://doi.org/10.1016/j.cma.2026.119037)**
 
     @article{kashefi2026FlowMatchingDiffusionPointNet,
       title = {Flow matching and diffusion models via PointNet for generating fluid fields on irregular geometries},
