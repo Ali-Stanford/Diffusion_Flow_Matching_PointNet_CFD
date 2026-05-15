@@ -1,3 +1,22 @@
+# In The Name of God
+##### Flow matching and diffusion models via PointNet for generating fluid fields #####
+
+#Author: Ali Kashefi (kashefi@stanford.edu)
+
+##### Citation #####
+#If you use the code, please cite the following journal paper: 
+#[Flow matching and diffusion models via PointNet for generating fluid fields]
+#(https://doi.org/10.1016/j.cma.2026.119037)
+
+#@article{kashefi2026FlowMatchingDiffusionPointNet,
+#title = {Flow matching and diffusion models via PointNet for generating fluid fields on irregular geometries},
+#author={Ali Kashefi},
+#journal={Computer Methods in Applied Mechanics and Engineering},
+#volume = {458},
+#pages = {119037},
+#year = {2026},
+#doi = {https://doi.org/10.1016/j.cma.2026.119037}}
+
 #########################
 # Libraries
 #########################
